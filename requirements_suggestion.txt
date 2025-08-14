@@ -1,0 +1,8 @@
+# Freeze your working versions after first clean run:
+# pip freeze > requirements.txt
+langchain-community
+langchain-huggingface
+duckduckgo-search
+huggingface_hub
+smolagents==1.21.0
+gradio

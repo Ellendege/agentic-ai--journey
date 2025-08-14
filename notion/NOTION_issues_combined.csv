@@ -1,0 +1,16 @@
+Date,Track,Issue,Symptom,Root Cause,Fix,Evidence,Next Step,Tags
+2025-08-08,LangChain,Missing langchain_community,ModuleNotFoundError,Imports moved to separate package,Install langchain-community; update imports,,Audit imports,"imports,langchain"
+2025-08-08,LangChain,OpenAI key while using HF,ValueError: Did not find openai_api_key,ChatOpenAI still in graph,Replace with HuggingFaceEndpoint,,Smoke test HF endpoint,"providers,huggingface"
+2025-08-08,LangChain,Deprecated HF integration,Deprecation warning,Legacy HuggingFaceHub class,Use langchain-huggingface; HuggingFaceEndpoint,,Refactor init,"deps,integrations"
+2025-08-08,LangChain,Wrong param nesting,Parameters {'temperature'},Params placed in model_kwargs,Pass top-level temperature/max_new_tokens,,Scan kwargs,parameters
+2025-08-08,LangChain,Missing duckduckgo-search,Import error,Missing dependency,pip install duckduckgo-search,,Add startup checks,"deps,tools"
+2025-08-08,LangChain,Unsupported model/task,Provider rejected task,Model not compatible with text-generation,Choose compatible instruction model,,Maintain whitelist,"models,providers"
+2025-08-08,LangChain,Wrong AgentType,AttributeError: ZERO_SHOT_REACT,Enum renamed,Use ZERO_SHOT_REACT_DESCRIPTION,,Search/replace,"agents,enums"
+2025-08-08,LangChain,max_length not supported,Param error,HF uses max_new_tokens,Replace with max_new_tokens,,Standardize gen params,parameters
+2025-08-08,Runtime,StopIteration,RuntimeError,None/empty tool output + mismatch,Guard returns; align model/task; handle_parsing_errors,,Minimal repro,runtime
+2025-08-08,SmolAgents,Missing/wrong imports,ImportError: HfApiModel/HuggingFaceInferenceModel,API changed,Use current class or InferenceClient,,Confirm version + imports,"smolagents,imports"
+2025-08-08,SmolAgents,Version mismatch,No matching distribution for smolagents,Pinned non-existent version,"Use available version (e.g., 1.21.0) and freeze",,Freeze working deps,"versions,deps"
+2025-08-08,SmolAgents,Old file structure,ModuleNotFoundError: smolagents.models.huggingface,Internal modules moved/removed,Stop using old subpaths; use public API or InferenceClient,,Imports pass,"modules,api"
+2025-08-08,SmolAgents,Provider & task mismatch,Provider task unsupported,Model not compatible,Choose compatible model; set task explicitly,,1-line smoke test,"models,providers"
+2025-08-08,SmolAgents,Missing secrets,ValueError: Missing HUGGINGFACEHUB_API_TOKEN,No token in environment,Add secrets to Space/env,,Env var returns value,"env,secrets"
+2025-08-08,SmolAgents,GAIA compliance,Output included extra logs,Evaluation requires exact format,Wrap run_agent() to return only final answer,,Clean output visible,"gaia,output"
